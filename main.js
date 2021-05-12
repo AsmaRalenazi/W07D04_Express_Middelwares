@@ -134,6 +134,17 @@ next()
 // that has the message of NOT FOUND and a status code of 404 
 //and that will be called when trying to access an unassigned endpoints.
 
+app.get ((err,req,res,next)=>{
+
+   const Err=new Error("NOT FOUND")
+   Err.status=404
+   next(err) 
+})
+
+
+
+
+
 
 
   //q5 Pulse Check
