@@ -3,24 +3,26 @@ const express = require("express");
 
 const app = express();
 const port = 3000;
-//q4
+//q4 Pulse Check
 app.use(express.json());
 
 //q1 Practice
 const authRouter=express.Router();
+const productRouter=express.Router();
 
 const users = ["John", "Mark"];
 
+//q5 Pulse Check
 app.get("/users", (req, res, next) => {
     if(users.length === 0) {
         const err = new Error("no users");
   err.status = 500;
-  // pass it to next, we only pass values to `next` when we want to call the error handling middleware
+  
   next(err);
     }
     res.json(users);
   });
-
+//Pulse Check
  //q1
  //Create a middleware function logUsers that logs the users array
  // then invokes the next middleware.
@@ -72,15 +74,37 @@ app.use("/users", logMethod)
 //.. and use it in the application, the endpoint /users should return all users.
 authRouter.get("/users", (req, res, next) => {
     
-    // if(users.length === 0) {
-    //             const err = new Error("no users");
-    //       err.status = 500;
-    //       // pass it to next, we only pass values to `next` when we want to call the error handling middleware
-    //       next(err);
-    //         }
             res.json(users);  });
 
-app.use(authRouter)
+
+//q2
+//Add a new route /users/create that will add a new user to the users array,
+// and create a middleware that will log 
+//the request body if found (use the correct HTTP method).
+
+authRouter.post("/users/create", (req, res, next) => {
+
+    const newUSER = req.body.name
+    users.push(newUSER)
+    
+    res.json(users); 
+ });
+
+
+ app.use(authRouter)
+
+
+
+
+//q3
+//Create a new express router to handel all requests to /products then 
+//use it in the app.
+
+productRouter.get("/products", (req, res, next) =>{
+
+})
+
+app.use(productRouter)
 
 
 
@@ -88,6 +112,7 @@ app.use(authRouter)
 
 
 
+  //q5 Pulse Check
   app.use((err, req, res, next) => {
     // set the status code
     res.status(err.status);
