@@ -107,8 +107,32 @@ productRouter.get("/products", (req, res, next) =>{
 app.use(productRouter)
 
 
+//q4
+//Create a products array that has the following items keyboard,
+// mouse and then add a route to update the items /products/update 
+//in the array, it should replace one of the values with the new value.
+
+ const products=["keyboard","mouse"]
+
+ authRouter.post("/products/update", (req, res, next) =>{
+  const updateUser=req.body.name
+  products.push(updateUser)
+  res.json(products)
+ })
 
 
+//q5
+//Create a new router-level middleware attached on the products router 
+//that will log the products router at every HTTP request.
+
+
+
+
+
+//q6
+//Create an application-level error-handling middleware,
+// that has the message of NOT FOUND and a status code of 404 
+//and that will be called when trying to access an unassigned endpoints.
 
 
 
