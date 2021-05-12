@@ -124,9 +124,9 @@ app.use(productRouter)
 //q5
 //Create a new router-level middleware attached on the products router 
 //that will log the products router at every HTTP request.
-
-
-
+productRouter.post((req, res, next) =>{
+next()
+})
 
 
 //q6
